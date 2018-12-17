@@ -8,15 +8,13 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class SuggestionController (private val aggregator: SuggestionAggregator) {
 
+    // TODO IMPLEMENT PARAMETER VALIDATION
     @GetMapping("/{city}")
-    fun suggestByCity(@PathVariable city:String): List<String> {
-        return aggregator.suggestForCity(city)
-    }
+    fun suggestByCity(@PathVariable city:String) = aggregator.suggestForCity(city)
 
+    // TODO IMPLEMENT PARAMETER VALIDATION
     @GetMapping("/{lat}/{lon}")
-    fun suggestByLatLon(@PathVariable lat:Double, @PathVariable lon:Double): List<String> {
-        return aggregator.suggestForLatLon(lat, lon)
-    }
+    fun suggestByLatLon(@PathVariable lat:Double, @PathVariable lon:Double)= aggregator.suggestForLatLon(lat, lon)
 
 
 }

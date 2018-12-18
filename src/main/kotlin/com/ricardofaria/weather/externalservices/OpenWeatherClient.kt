@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam
 @FeignClient("openweather", url = "\${openweather.api.url}")
 interface OpenWeatherClient {
 
-    @RequestMapping(method = arrayOf(RequestMethod.GET), value = arrayOf("/weather?q={city}&APPID=\${openweather.api.key}"))
-    fun getWeather(@RequestParam("city") city: String): OpenWeatherTemperature
+    @RequestMapping(method = arrayOf(RequestMethod.GET), value = arrayOf("/weather?APPID=\${openweather.api.key}&units=imperial"))
+    fun getWeather(@RequestParam("q") city: String): OpenWeatherTemperature
 
-    @RequestMapping(method = arrayOf(RequestMethod.GET), value = arrayOf("/weather?lat={lat}&lon={lon}&APPID=\${openweather.api.key}"))
+    @RequestMapping(method = arrayOf(RequestMethod.GET), value = arrayOf("/weather?APPID=\${openweather.api.key}&units=imperial"))
     fun getWeather(@RequestParam("lat") lat:Double, @RequestParam("lon") lon:Double): OpenWeatherTemperature
 
 }

@@ -17,6 +17,7 @@ class SpotifyService(private val spotifyClient: SpotifyClient) {
     @Cacheable(value = [MUSIC_CACHE_KEY], key = "#musicStyle", unless = "#result==null or #result.empty")
     fun getPlaylist(musicStyle: MusicStyle): List<String> {
         try {
+            logger.info("Searching for music style : '$musicStyle'")
             return spotifyClient.getPlaylistByGenre(musicStyle).items.map { it.name }
         } catch (e:Exception) {
             logger.error("Failed to retrieve music recommendation", e)

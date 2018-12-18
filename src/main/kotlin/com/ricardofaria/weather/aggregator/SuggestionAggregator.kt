@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service
 @Service
 class SuggestionAggregator(private val openWeatherService: OpenWeatherService, private val temperatureToMusicStyleResolver: TemperatureToMusicStyleResolver, private val spotifyService: SpotifyService) {
 
-    fun suggestForCity(city: String): Array<Track> {
+    fun suggestForCity(city: String): List<String> {
         val temperature = openWeatherService.getTemperatureOf(city)
         val musicStyle = temperatureToMusicStyleResolver.resolve(temperature)
         return spotifyService.getPlaylist(musicStyle)
     }
 
-    fun suggestForLatLon(lat:Double, lon:Double): Array<Track> {
+    fun suggestForLatLon(lat:Double, lon:Double): List<String> {
         val temperature = openWeatherService.getTemperatureOf(lat, lon)
         val musicStyle = temperatureToMusicStyleResolver.resolve(temperature)
         return spotifyService.getPlaylist(musicStyle)

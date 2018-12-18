@@ -11,7 +11,8 @@ class SpotifyClient (private val spotifyApi : SpotifyApi) {
 
     fun getPlaylistByGenre(musicStyle : MusicStyle): Paging<Track> {
         // TODO FIX SEARCH
-        return spotifyApi.searchTracks("genre:$musicStyle.name" ).limit(10).build().execute()
+        //return spotifyApi.searchTracks("%20genre:${musicStyle.spotifyName}%20" ).limit(10).build().execute()
+        return spotifyApi.searchTracks("${musicStyle.spotifyName}" ).limit(10).build().execute()
     }
 
 }
